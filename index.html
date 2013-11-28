@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+		<meta charset="UTF-8">
+		<title>THE TWEET</title>
+		<link rel="stylesheet" href="styles-ecrans.css" media="screen" />
+		<script src="OpenLayers-2.13.1/OpenLayers.js"></script>
+		<script src="init.js"></script>
+	</head>
+  
+	<body onload="init()">
+	
+		<header>
+				<input id="hashtag"  type="text" name="hashtag" size="20" placeholder="@hashtag" />
+				<input type="submit" name="rafraichir" value="rafraichir" onclick="encode()" />
+				<select  name="select">
+					<option>français</option>
+				</select>
+		</header>
+		<div id="map"></div>
+		<div id="tweet">
+				<div id="tweetsRetrouves">Tweets retrouvés
+				</div>
+				<div  id="contenuTweet">	
+				</div>
+		</div>
+	
+		<footer>
+			<input class="checkboxLierTweets" type="checkbox" name="lierTweets" value="Lier les tweets" />
+			<label>Lier les tweets</label> <br>
+			<input class="checkboxGrossirTweets" type="checkbox" name="grossirLesTweets" value="Grossir les les tweets selon leur importance" />
+			<label>Grossir les les tweets selon leur importance</label>
+		</footer>
+	
+	</body>
+	
+</html>

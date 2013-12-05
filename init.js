@@ -13,16 +13,18 @@ function init() {
 }
 
 function encode(){
-	document.getElementById("tweet").style.display="block";
-	var urlEncoder="geotweet.php?twitter_query=";
 	var uri = document.getElementById("hashtag").value;
-	var res = encodeURIComponent(uri);
-	var lien = "https://api.twitter.com/1.1/search/tweets.json?q=";
-	var url = encodeURIComponent(lien+res);
-	urlEncoder+= url;
-	ajax = creeRequete();
-	ajax.onreadystatechange = ecoute;
-	envoyerRequete(ajax,urlEncoder);
+	if(uri!=""){
+		document.getElementById("tweet").style.display="block";
+		var urlEncoder="geotweet.php?twitter_query=";
+		var res = encodeURIComponent(uri);
+		var lien = "https://api.twitter.com/1.1/search/tweets.json?q=";
+		var url = encodeURIComponent(lien+res);
+		urlEncoder+= url;
+		ajax = creeRequete();
+		ajax.onreadystatechange = ecoute;
+		envoyerRequete(ajax,urlEncoder);
+	}
 }
 
 

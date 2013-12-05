@@ -5,11 +5,37 @@ var map;
 var calqueMarkers;
 var icon ;
 
+
 function init() {
 	map = new OpenLayers.Map("map");
 	map.addLayer(new OpenLayers.Layer.OSM());
 	map.addControl(new OpenLayers.Control.LayerSwitcher({'ascending':false}));
    	map.zoomTo(3);
+}
+
+function entrer(event) {
+        if (event.which == 13 || event.keyCode == 13) {
+            encode()
+        }
+    };
+
+function langue(){
+	var selectElmt = document.getElementById("select");
+	var valeur=selectElmt.options[selectElmt.selectedIndex].value;
+	if(valeur==2){
+		document.getElementById("rafraichir").innerHTML="Refresh";
+		selectElmt.options[0].innerHTML="French";
+		selectElmt.options[1].innerHTML="English";
+		document.getElementById("lier").innerHTML="Linking tweets";
+		document.getElementById("Grossir").innerHTML="Larger tweets according to their importance";
+	}
+	if(valeur==1){
+		document.getElementById("rafraichir").innerHTML="Rafraichir";
+		selectElmt.options[0].innerHTML="Francais";
+		selectElmt.options[1].innerHTML="Anglais";
+		document.getElementById("lier").innerHTML="Lier les tweets";
+		document.getElementById("Grossir").innerHTML="Grossir les tweets selon leur importance";
+	}
 }
 
 function encode(){

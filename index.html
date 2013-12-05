@@ -12,10 +12,11 @@
 	<body onload="init()">
 	
 		<header>
-				<input id="hashtag"  type="text" name="hashtag" size="20" placeholder="@hashtag" />
-				<a href="#" name="rafraichir" value="rafraichir" onclick="encode()"  class="myButton">Rafraichir</a>
-				<select  name="select">
-					<option>français</option>
+				<input id="hashtag"  type="text" name="hashtag" onkeypress="entrer(event)" size="20" placeholder="@hashtag" />
+				<a href="#" id="rafraichir" name="rafraichir" value="rafraichir" onclick="encode()" class="myButton">Rafraichir</a>
+				<select  id="select" name="select" onChange="langue()">
+					<option name="français" value="1">Français</option>
+					<option name="anglais" value="2">Anglais</option>
 				</select>
 		</header>
 		<div id="map"></div>
@@ -26,9 +27,9 @@
 	
 		<footer>
 			<input class="checkboxLierTweets" type="checkbox" name="lierTweets" value="Lier les tweets" />
-			<label>Lier les tweets</label> <br>
+			<label id="lier" >Lier les tweets</label> <br>
 			<input class="checkboxGrossirTweets" type="checkbox" name="grossirLesTweets" value="Grossir les les tweets selon leur importance" />
-			<label>Grossir les les tweets selon leur importance</label>
+			<label id="Grossir">Grossir les tweets selon leur importance</label>
 		</footer>
 	
 	</body>

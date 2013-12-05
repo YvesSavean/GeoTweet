@@ -13,7 +13,6 @@ function init() {
 }
 
 function encode(){
-	document.getElementById("map").style.width="60%";
 	document.getElementById("tweet").style.display="block";
 	var urlEncoder="geotweet.php?twitter_query=";
 	var uri = document.getElementById("hashtag").value;
@@ -25,6 +24,7 @@ function encode(){
 	ajax.onreadystatechange = ecoute;
 	envoyerRequete(ajax,urlEncoder);
 }
+
 
 function creeRequete(){
 	var xmlhttp;
@@ -54,16 +54,27 @@ function ecoute(){
 					console.log(jason);
 					document.getElementById("contenuTweet").innerHTML="";
 					var x;
-					var y;
-					for(i=0;i<jason.search_metadata.count;i++){
-						if(jason.statuses[i].geo!=null){
+					var y; 
+					var reg=new RegExp(/@[a-zA-Z0-9_-]*/);;
+					for(i=0;i<jason.search_metadata.count;i++){ 
+						if(jason.statuses[i].geo!=undefined){
 							var coord = jason.statuses[i].geo.coordinates;
 							 y = coord[0];
 							 x = coord[1];
-						document.getElementById("contenuTweet").innerHTML+="<div id='unTweet' onclick='marker("+x+","+y+")'><img src='"+jason.statuses[i].user.profile_image_url_https+"'/>"+jason.statuses[i].user.name+" @"+jason.statuses[i].user.screen_name+"</br>"+ jason.statuses[i].text+"<hr></br></div>";
+							if(jason.statuses[i].retweeted_status!=undefined){
+								document.getElementById("contenuTweet").innerHTML+="<div id='unTweetGeo' onclick='marker("+x+","+y+")'><img src='"+jason.statuses[i].user.profile_image_url_https+"'/>"+jason.statuses[i].user.name+" <a href='http://www.twitter.com/"+jason.statuses[i].user.screen_name+"' target='_blank'>@"+jason.statuses[i].user.screen_name+"</a></br>"+ processTweetLinks(jason.statuses[i].text)+"</br>tweet crée le "+jason.statuses[i].retweeted_status.created_at+"  et retweeté:"+jason.statuses[i].retweet_count+" fois<hr></div>";
+							}
+							else{
+								document.getElementById("contenuTweet").innerHTML+="<div id='unTweetGeo' onclick='marker("+x+","+y+")'><img src='"+jason.statuses[i].user.profile_image_url_https+"'/>"+jason.statuses[i].user.name+" <a href='http://www.twitter.com/"+jason.statuses[i].user.screen_name+"' target='_blank'>@"+jason.statuses[i].user.screen_name+"</a></br>"+ processTweetLinks(jason.statuses[i].text)+"</br><hr></div>";
+							}
 						}
 						else{
-							document.getElementById("contenuTweet").innerHTML+="<div id='unTweet'><img src='"+jason.statuses[i].user.profile_image_url_https+"'/>"+jason.statuses[i].user.name+" @"+jason.statuses[i].user.screen_name+"</br>"+ jason.statuses[i].text+"<hr></br></div>";
+							if(jason.statuses[i].retweeted_status!=undefined){
+								document.getElementById("contenuTweet").innerHTML+="<div id='unTweet'><img src='"+jason.statuses[i].user.profile_image_url_https+"'/>"+jason.statuses[i].user.name+" <a href='http://www.twitter.com/"+jason.statuses[i].user.screen_name+"' target='_blank'>@"+jason.statuses[i].user.screen_name+"</a></br>"+ processTweetLinks(jason.statuses[i].text)+"</br>tweet crée le "+jason.statuses[i].retweeted_status.created_at+"  et retweeté:"+jason.statuses[i].retweet_count+" fois<hr></div>";
+							}
+							else{
+								document.getElementById("contenuTweet").innerHTML+="<div id='unTweet'><img src='"+jason.statuses[i].user.profile_image_url_https+"'/>"+jason.statuses[i].user.name+" <a href='http://www.twitter.com/"+jason.statuses[i].user.screen_name+"' target='_blank'>@"+jason.statuses[i].user.screen_name+"</a></br>"+ processTweetLinks(jason.statuses[i].text)+"</br><hr></div>";
+							}
 						}
 					} 
 	        }
@@ -71,6 +82,15 @@ function ecoute(){
   
 }
 
+function processTweetLinks(text) {
+	var exp = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/i;
+	text = text.replace(exp, "<a href='$1' target='_blank'>$1</a>");
+	exp = /(^|\s)#(\w+)/g;
+	text = text.replace(exp, "$1<a href='http://search.twitter.com/search?q=%23$2' target='_blank'>#$2</a>");
+	exp = /(^|\s)@(\w+)/g;
+	text = text.replace(exp, "$1<a href='http://www.twitter.com/$2' target='_blank'>@$2</a>");
+	return text;
+	}
 function marker(x,y){
  
     var lonLat = new OpenLayers.LonLat( x ,y )

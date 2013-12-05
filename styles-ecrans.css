@@ -1,4 +1,4 @@
-
+	@media all{
 	*{
 		margin: 0;
 		padding: 0;
@@ -7,7 +7,7 @@
 	header {
 		width: 100%;
 		height:25px;
-		background-color: #A9ADC7;
+		background-color: #2E2E2E;
 		border-width:3px;
 		border-style:outset;
 		border-color:#A9ADC7;
@@ -21,8 +21,9 @@
 		bottom:40px;
 	}
 	
+
 	#tweet{
-		background-color:black;
+		background-color:#F2F2F2;
 		overflow:auto;
 		position: fixed;
 		top: 31px;
@@ -32,31 +33,18 @@
 		display:none;
 	}
 	
-	#tweetsRetrouves{
-		position:fixed;
-		width:40%;
-		color:white;
-		height:50px;
-		text-align:center;
-	}
-	#unTweet{
-		color:white;
+
+	
+	#unTweetGeo:Hover{
+		background-color:#F5A9A9;
+		color:brown;
 	}
 	
 	#unTweet:Hover{
-		background-color:white;
+		background-color:#BDBDBD;
 		color:black;
 	}
 	
-	hr:Hover{
-		background-color:white;
-		color:black;
-	}
-	
-	hr {
-		text-align:center;
-		width:50%;
-	}	
 	
 	
 	footer{
@@ -64,7 +52,86 @@
 		bottom:0px;
 		height:40px;
 		width: 100%;
-		background-color: #A9ADC7;
+		background-color: #2E2E2E;
 	}
 	
+	a{
+		text-decoration:none;
+		color:grey;
+	}
+	
+	a:Hover{
+		color:brown;
+	}
+}	
+
+	@media all and (max-width: 780px){
+	
+   *{
+		margin: 0;
+		padding: 0;
+	}
+	
+	header {
+		float:left
+		width: 100%;
+		height:25px;
+		background-color: #2E2E2E;
+		border-width:3px;
+		border-style:outset;
+		border-color:#A9ADC7;
+	}
+	
+	#map{
+		float:left;
+	}
+
+	#tweet{
+		font-size:smaller;
+		float:left;
+		background-color:#F2F2F2;
+		overflow:auto;
+		position: fixed;
+		width:100%;
+		bottom:40px;
+		top:45%;
+		display:none;
+	}
+	
+
+	
+	#unTweetGeo:Hover{
+		background-color:#F5A9A9;
+		color:brown;
+	}
+	
+	#unTweet:Hover{
+		background-color:#BDBDBD;
+		color:black;
+	}
+	
+	
+	
+	footer{
+		position: absolute;
+		bottom:0px;
+		height:40px;
+		width: 100%;
+		background-color: #2E2E2E;
+	}
+	
+	a{
+		text-decoration:none;
+		color:grey;
+	}
+	
+	a:Hover{
+		color:brown;
+	}
+
+}
+
+ 
+
+
 	
